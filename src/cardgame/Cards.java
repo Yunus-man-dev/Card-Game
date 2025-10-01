@@ -63,9 +63,18 @@ public class Cards
     }
     
     public void shuffle()
-    {
-        // Todo
+{
+    java.util.Random rand = new java.util.Random();
+
+    // 0'dan başlayarak ileriye doğru shuffle
+    for (int i = 0; i < valid; i++) {
+        int j = rand.nextInt(valid); // 0 ile valid-1 arası
+        // swap cards[i] ve cards[j]
+        Card temp = cards[i];
+        cards[i] = cards[j];
+        cards[j] = temp;
     }
+}
     
     
     // For testOnly... remove from production version!
