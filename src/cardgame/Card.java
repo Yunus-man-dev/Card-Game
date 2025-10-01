@@ -17,6 +17,7 @@ public class Card
     
     // properties - to do in lectures
     int  cardNo;
+
     
     // constructors  - to do in lectures
     public Card( int faceValue, int suit )
@@ -29,6 +30,9 @@ public class Card
         cardNo = cardNumber;
     }
     
+
+
+
     public int getFaceValue()
     {
         return cardNo % NOOFCARDSINSUIT;
@@ -47,12 +51,34 @@ public class Card
     public boolean equals( Card c)
     {
         // ToDo
+        // Suiti katmadım
+        if(c.getFaceValue() == this.getFaceValue()){
+
+            return true;
+        }
+
+
         return false;
     }
     
     public int compareTo( Card c)
     {
         // ToDo
-        return 0;
+        if(this.equals(c)){
+
+            return 0;
+
+
+        }
+        // bu kard daha buyuk ise
+        else if(c.getFaceValue() < this.getFaceValue()){
+
+            return +1;
+
+        }
+        else{
+             return -1;
+        }
+       
     }
 }
