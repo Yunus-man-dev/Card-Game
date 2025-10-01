@@ -5,7 +5,7 @@ import java.util.Random;
 // Cards - Maintains a collection of zero or more playing cards.
 //         Provides facilities to create a full pack of 52 cards
 //         and to shuffle the cards.
-// author:Eralp Yiğit Boz
+// author: Burak , Yunus Emre, Eralp Yiğit Boz
 // date:
 public class Cards {
     final int NOOFCARDSINFULLPACK = 52;

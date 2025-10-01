@@ -24,12 +24,12 @@ public class ScoreCard
     // methods
     public int getScore( int playerNo)
     {
-        return scores[ playerNo];
+        return scores[ playerNo-1];
     }
     
     public void update( int playerNo, int amount)
     {
-        scores[playerNo] += amount;
+        scores[playerNo-1] += amount;
     }
     
     public String toString()
@@ -49,6 +49,8 @@ public class ScoreCard
         return s;
     }
     
+
+    // Yunus: this method always returns the player 1 in the arraylist, and t
     public ArrayList<Integer> getWinners()
     {
         // ToDo
@@ -61,6 +63,11 @@ public class ScoreCard
             }
         }
         return winnerPlayers;
+
+        
     }
+
+
+
     
 } // end class ScoreCard

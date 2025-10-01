@@ -53,9 +53,12 @@ public class CardGameTest
         
         // test ScoreCard class
         scores = new ScoreCard( 4);
-        scores.update( 3, 1);
-        scores.update( 1, 2);
+        scores.update(1, 1);
+        scores.update( 2, 2);
+        scores.update( 3, 3);
+        scores.update( 4, 1);
         System.out.println( "\n" + scores );
+        System.out.println(scores.getWinners());
         
         // test Player class
         // ToDo

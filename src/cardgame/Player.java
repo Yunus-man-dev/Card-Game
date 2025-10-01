@@ -13,7 +13,7 @@ public class Player
     public Player( String name)
     {
         // ToDo
-        name = this.name;
+        this.name = name;
     }
     
     // methods
