@@ -3,7 +3,7 @@ package cardgame;
 import java.util.ArrayList;
 
 // Cardgame
-// author:
+// author:Eralp Yiğit Boz
 // date:
 public class CardGame {
     // properties
