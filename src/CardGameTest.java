@@ -14,8 +14,11 @@ public class CardGameTest
         
         // CONSTANTS
         
+
+
         // VARIABLES
         Card       c;
+       
         Cards      cards;
         ScoreCard  scores;
         Player     p;
@@ -24,14 +27,29 @@ public class CardGameTest
         // PROGRAM CODE
         
         // test Card class
-        c = new Card( 0);
+        c = new Card( 3); // A Hearts
         System.out.println( c);
         System.out.println();
         
+    //     d = new Card( 13); // A Diamnond
+    //     System.out.println( d);
+    //     System.out.println();
+
+
+    //   System.out.println(d.compareTo(c));
+
+
+
         // test Cards class
         cards = new Cards( true);
+
+        cards.testOnlyPrint();
+        System.out.println(cards.getTopCard());
         cards.addTopCard( c);
-        cards.testOnlyPrint();  // remove method after testing!
+        System.out.println(cards.getTopCard());
+        // System.out.println();
+        // cards.testOnlyPrint();
+          // remove method after testing!
         
         // test ScoreCard class
         scores = new ScoreCard( 4);
