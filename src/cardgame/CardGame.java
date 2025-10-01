@@ -5,74 +5,113 @@ import java.util.ArrayList;
 // Cardgame
 // author:
 // date:
-public class CardGame
-{
+public class CardGame {
     // properties
-    Cards             fullPack;
+    Cards fullPack;
     ArrayList<Player> players;
-    ScoreCard         scoreCard;
-    Cards[]           cardsOnTable;
-    int               roundNo;
-    int               turnOfPlayer;
-    
+    ScoreCard scoreCard;
+    Cards[] cardsOnTable;
+    int roundNo;
+    int turnOfPlayer;
+
     // constructors
-    public CardGame( Player p1, Player p2, Player p3, Player p4)
-    {
+    public CardGame(Player p1, Player p2, Player p3, Player p4) {
         // ToDo
     }
-    
+
     // methods
-    public boolean playTurn( Player p, Card c)
-    {
+    public boolean playTurn(Player p, Card c) {
         // Todo
         return false;
     }
-    
-    public boolean isTurnOf( Player p)
-    {
+
+    public boolean isTurnOf(Player p) {
         // ToDo
         return false;
     }
-    
-    public boolean isGameOver()
-    {
-        // ToDo
-        return false;
+
+    public boolean isGameOver() {
+        for (Player p : players) {
+            if (p.hand.getValid() > 0) {
+
+                return false;
+            }
+        }
+        return true;
     }
-    
-    public int getScore( int playerNumber)
-    {
+
+    public int getScore(int playerNumber) {
         // ToDo
-        return -1;
+        return scoreCard.getScore(playerNumber);
     }
-    
-    public String getName( int playerNumber)
-    {
+
+    public String getName(int playerNumber) {
+        return players.get(playerNumber).getName();
+    }
+
+    public int getRoundNo() {
         // ToDo
-        return "Not yet implemented";
+        return roundNo;
     }
-    
-    public int getRoundNo()
-    {
-        // ToDo
-        return -1;
+
+    public int getTurnOfPlayerNo() {
+        return turnOfPlayer;
     }
-    
-    public int getTurnOfPlayerNo()
-    {
-        // ToDo
-        return -1;
+
+    public Player[] getWinners() {
+
+        int playerOneScore = scoreCard.getScore(0);
+        int playerTwoScore = scoreCard.getScore(1);
+        int playerThreeScore = scoreCard.getScore(2);
+        int playerFourScore = scoreCard.getScore(3);
+
+        int maxScore = playerOneScore;
+        if (playerTwoScore > maxScore)
+            maxScore = playerTwoScore;
+        if (playerThreeScore > maxScore)
+            maxScore = playerThreeScore;
+        if (playerFourScore > maxScore)
+            maxScore = playerFourScore;
+
+        int winnerCount = 0;
+        if (playerOneScore == maxScore) {
+            winnerCount++;
+        }
+        if (playerTwoScore == maxScore) {
+            winnerCount++;
+        }
+        if (playerThreeScore == maxScore) {
+            winnerCount++;
+        }
+        if (playerFourScore == maxScore) {
+            winnerCount++;
+        }
+
+        Player[] winners = new Player[winnerCount];
+
+        int index = 0;
+        if (playerOneScore == maxScore) {
+            winners[index] = players.get(0);
+            index = index + 1;
+        }
+        if (playerTwoScore == maxScore) {
+            winners[index] = players.get(1);
+            index = index + 1;
+        }
+        if (playerThreeScore == maxScore) {
+            winners[index] = players.get(2);
+            index = index + 1;
+        }
+        if (playerFourScore == maxScore) {
+            winners[index] = players.get(3);
+            index = index + 1;
+        }
+
+        return winners;
     }
-    
-    public Player[] getWinners()
-    {
-        // ToDo
-        return null;
-    }
-    
-    public String showScoreCard()
-    {
+
+    public String showScoreCard() {
         return scoreCard.toString();
     }
-    
+
 }
