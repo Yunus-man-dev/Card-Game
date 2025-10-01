@@ -52,10 +52,14 @@ public class Cards
     
     private void createFullPackOfCards()
     {
-        // Todo
-        addTopCard( new Card(0) );
-        addTopCard( new Card(25) );
-        addTopCard( new Card(13) );
+  
+        for(int i =0; i<52; i++){
+            addTopCard( new Card(i) );
+
+
+        }
+        
+        
     }
     
     public void shuffle()

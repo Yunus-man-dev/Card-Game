@@ -2,7 +2,7 @@ package cardgame;
 
 /**
  * Card - a single playing card
- * @author
+ * @author Yunus Emre
  * @version
  */
 public class Card
@@ -56,7 +56,7 @@ public class Card
 
             return true;
         }
-
+        
 
         return false;
     }
