@@ -1,9 +1,11 @@
 package cardgame;
 
+import java.util.ArrayList;
+
 // ScoreCard - Maintains one integer score per player, for any number of players
 //             Caution: invalid playernumbers result in run-time exception!
-// author:
-// date:
+// author:Emir Zeybek
+// date:01/10/25
 public class ScoreCard
 {
     // properties
@@ -47,10 +49,18 @@ public class ScoreCard
         return s;
     }
     
-    public int[] getWinners()
+    public ArrayList<Integer> getWinners()
     {
         // ToDo
-        return null;
+        ArrayList<Integer> winnerPlayers = new ArrayList<>();
+        int maxPoint = -1;
+        for (int i = 0; i < scores.length; i++) {
+            if( maxPoint < scores[i]){
+                maxPoint = scores[i];
+                winnerPlayers.add(i + 1);
+            }
+        }
+        return winnerPlayers;
     }
     
 } // end class ScoreCard
