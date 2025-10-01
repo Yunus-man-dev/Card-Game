@@ -1,8 +1,8 @@
 package cardgame;
 
 // Player - Simple card game player with name and hand of cards
-// author:
-// date:
+// author: Emir Zeybek
+// date: 01/10/25
 public class Player
 {
     // properties
@@ -13,6 +13,7 @@ public class Player
     public Player( String name)
     {
         // ToDo
+        name = this.name;
     }
     
     // methods
@@ -23,13 +24,16 @@ public class Player
     
     public void add( Card c)
     {
-        // ToDo
+        hand.addTopCard(c);
+
     }
     
     public Card playCard()
     {
-        // ToDo
-        return null;
+        if( hand.getTopCard() == null){
+            return null;
+        }
+        return hand.getTopCard();
     }
     
 } // end class Player
