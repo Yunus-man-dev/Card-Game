@@ -2,7 +2,7 @@ import java.util.Scanner;
 import cardgame.*;
 
 // CardGameTest
-// author:
+// author: Ahmet Zeki
 // date:
 public class CardGameTest
 {
@@ -19,10 +19,14 @@ public class CardGameTest
         // VARIABLES
         Card       c;
        
-        Cards      cards;
-        ScoreCard  scores;
-        Player     p;
-        CardGame   game;
+        Cards      cards = new Cards(true);
+        Cards      onTable = new Cards(false);
+        ScoreCard  scores = new ScoreCard(4);
+        Player     p1 = new Player("Player1");
+        Player     p2 = new Player("Player2");
+        Player     p3 = new Player("Player3");
+        Player     p4 = new Player("Player4");
+        CardGame   game = new CardGame(p1, p2, p3, p4);
         
         // PROGRAM CODE
         

@@ -3,7 +3,7 @@ package cardgame;
 import java.util.ArrayList;
 
 // Cardgame
-// author:Eralp Yiğit Boz
+// author:Eralp Yiğit Boz, Ahmet Zeki
 // date:
 public class CardGame {
     // properties
@@ -17,16 +17,39 @@ public class CardGame {
     // constructors
     public CardGame(Player p1, Player p2, Player p3, Player p4) {
         // ToDo
+        this.fullPack = new Cards(true);
+        this.fullPack.shuffle();
+        this.players = new ArrayList<>();
+        players.add(p1);
+        players.add(p2);
+        players.add(p3);
+        players.add(p4);
+        for(int i = 0; i<52; i++){
+            players.get(i%4).add(fullPack.getTopCard());
+        }
+        cardsOnTable = new Cards[4];
+        for(int i = 0; i < 4; i++){
+            cardsOnTable [i] = new Cards (false);
+        }
+        scoreCard = new ScoreCard(4);
+        int roundNo = 0;
+        int turnOfPlayer = -1;
     }
 
     // methods
     public boolean playTurn(Player p, Card c) {
         // Todo
+        if(isTurnOf(p)){
+            
+        }
         return false;
     }
 
     public boolean isTurnOf(Player p) {
         // ToDo
+        if(p == players.get(getTurnOfPlayerNo())){
+            return true;
+        }
         return false;
     }
 
@@ -51,10 +74,17 @@ public class CardGame {
 
     public int getRoundNo() {
         // ToDo
+        if(getTurnOfPlayerNo() == 0){
+            roundNo++;
+        }
         return roundNo;
     }
 
     public int getTurnOfPlayerNo() {
+        turnOfPlayer++;
+        if(turnOfPlayer == 4){
+            turnOfPlayer = 0;
+        }
         return turnOfPlayer;
     }
 
