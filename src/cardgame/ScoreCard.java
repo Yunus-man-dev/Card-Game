@@ -51,20 +51,23 @@ public class ScoreCard
     
 
     // Yunus: this method always returns the player 1 in the arraylist, and t
+    // Update: updated by emir.
     public ArrayList<Integer> getWinners()
     {
-        // ToDo
+        
         ArrayList<Integer> winnerPlayers = new ArrayList<>();
         int maxPoint = -1;
         for (int i = 0; i < scores.length; i++) {
-            if( maxPoint < scores[i]){
+            if (scores[i] > maxPoint) {
+                winnerPlayers.clear();
+                winnerPlayers.add(i + 1);
                 maxPoint = scores[i];
+            } 
+            else if (scores[i] == maxPoint) {
                 winnerPlayers.add(i + 1);
             }
         }
         return winnerPlayers;
-
-        
     }
 
 
