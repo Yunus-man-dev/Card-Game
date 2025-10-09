@@ -7,13 +7,14 @@ public class Player
 {
     // properties
     String name;
-    Cards hand;
+    public Cards hand;
     
     // constructors
     public Player( String name)
     {
         // ToDo
         this.name = name;
+        this.hand = new Cards(false);
     }
     
     // methods
