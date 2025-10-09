@@ -40,7 +40,10 @@ public class CardGame {
     public boolean playTurn(Player p, Card c) {
         // Todo
         if(isTurnOf(p)){
-            
+            if(p.playCard().getFaceValue() == c.getFaceValue() || p.playCard().getSuit() == c.getSuit()){
+                cardsOnTable[cardsOnTable.length].addTopCard(c);
+                return true;
+            }
         }
         return false;
     }

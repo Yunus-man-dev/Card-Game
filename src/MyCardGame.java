@@ -4,8 +4,8 @@ import cardgame.*;
 // MyCardGame - provides a menu allowing any of the players to play their card,
 //              an option to see the score card, and one to quit the game at any time.
 //              When the game is over it dislays the winners.
-// author:
-// date:
+// author: Yusuf Burak 
+// date: 2025-10-09
 public class MyCardGame
 {
     public static void main( String[] args)
@@ -70,17 +70,25 @@ public class MyCardGame
             else if ( selection == MENU_PLAY_P4 )
                 play( p4, game);
             
-            else if ( selection == MENU_SCORES )
-                // ToDo ~ System.out.println( game.showScoreCard() );
+            else if ( selection == MENU_SCORES ){
+                System.out.println( game.showScoreCard() );
                 System.out.println( "ToDo..." );
-            
+            }
+
             else if ( selection != MENU_EXIT)
                 System.out.println( "Invalid selection! \n" );
             
         } while ( selection != MENU_EXIT);
 
         // display winners...
-        // ToDo ~ game.isGameOver(); ? game.getWinners(); 
+        // ToDo ~ game.isGameOver(); ? game.getWinners();
+        if(game.isGameOver()){
+            System.out.println( "Game Over!\n" );
+            System.out.println( "Winners: " + game.getWinners() + "\n" );
+        }
+        else{
+            System.out.println( "Game Was Not Over!\n" );
+        } 
         System.out.println( "ToDo..." );
         
         System.out.println( "\nEnd of MyCardGame\n" );   
@@ -98,7 +106,16 @@ public class MyCardGame
         
         accepted = false;  // ToDo...
 
+        c = p.playCard();
+        if(game.playTurn(p, c)){
+            accepted = true;
+        }
+        else{
+            p.add(c);
+        }
+
         return accepted;
     }
     
-} // end class MyCardGame
+}
+ // end class MyCardGame
