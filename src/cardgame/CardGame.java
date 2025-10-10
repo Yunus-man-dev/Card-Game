@@ -24,12 +24,13 @@ public class CardGame {
         players.add(p2);
         players.add(p3);
         players.add(p4);
-        for(int i = 0; i<52; i++){
-            players.get(i%4).add(fullPack.getTopCard());
+
+        for (int i = 0; i < 52; i++) {
+            players.get(i % 4).add(fullPack.getTopCard());
         }
         cardsOnTable = new Cards[4];
-        for(int i = 0; i < 4; i++){
-            cardsOnTable [i] = new Cards (false);
+        for (int i = 0; i < 4; i++) {
+            cardsOnTable[i] = new Cards(false);
         }
         scoreCard = new ScoreCard(4);
         this.roundNo = 1;
@@ -38,19 +39,18 @@ public class CardGame {
 
     // methods
     public boolean playTurn(Player p, Card c) {
-        // Todo
-        if(isTurnOf(p)){
-            if(p.playCard().getFaceValue() == c.getFaceValue() || p.playCard().getSuit() == c.getSuit()){
-                cardsOnTable[cardsOnTable.length].addTopCard(c);
-                return true;
-            }
+        if (!isTurnOf(p)) {
+            return false; // Sırası değilse hamle geçersiz
         }
-        return false;
+        int playerIndex = players.indexOf(p); // EKLENDİ: oyuncunun sıra indeksini bul
+        cardsOnTable[playerIndex].addTopCard(c); // Kartı masaya koy
+
+        turnOfPlayer = (turnOfPlayer + 1) % 4;
     }
 
     public boolean isTurnOf(Player p) {
-        
-        if(p == players.get(getTurnOfPlayerNo())){
+
+        if (p == players.get(getTurnOfPlayerNo())) {
             return true;
         }
         return false;
@@ -77,12 +77,12 @@ public class CardGame {
 
     public int getRoundNo() {
         // ToDo
-        
+
         return roundNo;
     }
 
     public int getTurnOfPlayerNo() {
-        
+
         return turnOfPlayer;
     }
 
