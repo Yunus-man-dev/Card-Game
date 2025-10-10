@@ -115,10 +115,10 @@ public class CardGame {
 
     public Player[] getWinners() {
         // FIX: skor indeksleri 0–3 arası olmalı
-        int playerOneScore = scoreCard.getScore(0);
-        int playerTwoScore = scoreCard.getScore(1);
-        int playerThreeScore = scoreCard.getScore(2);
-        int playerFourScore = scoreCard.getScore(3);
+        int playerOneScore = scoreCard.getScore(1);
+        int playerTwoScore = scoreCard.getScore(2);
+        int playerThreeScore = scoreCard.getScore(3);
+        int playerFourScore = scoreCard.getScore(4);
 
         int maxScore = Math.max(
                 Math.max(playerOneScore, playerTwoScore),
@@ -138,19 +138,19 @@ public class CardGame {
         int index = 0;
 
         if (playerOneScore == maxScore) {
-            winners[index] = players.get(0);
-            index++;
-        }
-        if (playerTwoScore == maxScore) {
             winners[index] = players.get(1);
             index++;
         }
-        if (playerThreeScore == maxScore) {
+        if (playerTwoScore == maxScore) {
             winners[index] = players.get(2);
             index++;
         }
-        if (playerFourScore == maxScore) {
+        if (playerThreeScore == maxScore) {
             winners[index] = players.get(3);
+            index++;
+        }
+        if (playerFourScore == maxScore) {
+            winners[index] = players.get(4);
             index++;
         }
 

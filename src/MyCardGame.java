@@ -6,117 +6,124 @@ import cardgame.*;
 //              When the game is over it dislays the winners.
 // author: Yusuf Burak 
 // date: 2025-10-09
-public class MyCardGame
-{
-    public static void main( String[] args)
-    {
-        Scanner scan = new Scanner( System.in);
-        
-        System.out.println( "Start of MyCardGame\n");
-        
+public class MyCardGame {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Start of MyCardGame\n");
+
         // CONSTANTS
-        final int MENU_EXIT    = 0;
+        final int MENU_EXIT = 0;
         final int MENU_PLAY_P1 = 1;
         final int MENU_PLAY_P2 = 2;
         final int MENU_PLAY_P3 = 3;
         final int MENU_PLAY_P4 = 4;
-        final int MENU_SCORES  = 5;
-        
+        final int MENU_SCORES = 5;
+
         // VARIABLES
-        Player     p1, p2, p3, p4;
-        CardGame   game;
-        int        selection;
-        
+        Player p1, p2, p3, p4;
+        CardGame game;
+        int selection;
+
         // PROGRAM CODE
 
         // create players...
-        p1 = new Player( "p1");
-        p2 = new Player( "p2");
-        p3 = new Player( "p3");
-        p4 = new Player( "p4");
-        
+        p1 = new Player("p1");
+        p2 = new Player("p2");
+        p3 = new Player("p3");
+        p4 = new Player("p4");
+
         // create game with the 4 players...
-        game = new CardGame( p1, p2, p3, p4);
-        
+        game = new CardGame(p1, p2, p3, p4);
+
         // display menu, get and process selection, until exit
-        do 
-        {
+        do {
             // display menu
             System.out.println();
-            int x = game.getTurnOfPlayerNo()+1;
-            System.out.println( "MyCardGame   Round: " + game.getRoundNo() 
-                                 + "\t TurnOfPlayer: " + x );
+            int x = game.getTurnOfPlayerNo() + 1;
+            System.out.println("MyCardGame   Round: " + game.getRoundNo()
+                    + "\t TurnOfPlayer: " + x);
             System.out.println();
-            System.out.println( MENU_PLAY_P1 + " - Player " + MENU_PLAY_P1 + " plays" );
-            System.out.println( MENU_PLAY_P2 + " - Player " + MENU_PLAY_P2 + " plays" );
-            System.out.println( MENU_PLAY_P3 + " - Player " + MENU_PLAY_P3 + " plays" );
-            System.out.println( MENU_PLAY_P4 + " - Player " + MENU_PLAY_P4 + " plays" );
-            System.out.println( MENU_SCORES  + " - Show scores" );
-            
+            System.out.println(MENU_PLAY_P1 + " - Player " + MENU_PLAY_P1 + " plays");
+            System.out.println(MENU_PLAY_P2 + " - Player " + MENU_PLAY_P2 + " plays");
+            System.out.println(MENU_PLAY_P3 + " - Player " + MENU_PLAY_P3 + " plays");
+            System.out.println(MENU_PLAY_P4 + " - Player " + MENU_PLAY_P4 + " plays");
+            System.out.println(MENU_SCORES + " - Show scores");
+
             // ask for and get selection
             System.out.println();
-            System.out.print( "Selection (" + MENU_EXIT + " to exit): ");
+            System.out.print("Selection (" + MENU_EXIT + " to exit): ");
             selection = scan.nextInt();
-            
+
             // process selection
-            if ( selection == MENU_PLAY_P1 )
-                play( p1, game);
-            
-            else if ( selection == MENU_PLAY_P2 )
-                play( p2, game);
-            
-            else if ( selection == MENU_PLAY_P3 )
-                play( p3, game);
-            
-            else if ( selection == MENU_PLAY_P4 )
-                play( p4, game);
-            
-            else if ( selection == MENU_SCORES ){
-                System.out.println( game.showScoreCard() );
-                System.out.println( "ToDo..." );
+            if (selection == MENU_PLAY_P1)
+                play(p1, game);
+
+            else if (selection == MENU_PLAY_P2)
+                play(p2, game);
+
+            else if (selection == MENU_PLAY_P3)
+                play(p3, game);
+
+            else if (selection == MENU_PLAY_P4)
+                play(p4, game);
+
+            else if (selection == MENU_SCORES) {
+                System.out.println(game.showScoreCard());
+                System.out.println("ToDo...");
             }
 
-            else if ( selection != MENU_EXIT)
-                System.out.println( "Invalid selection! \n" );
-            
-        } while ( selection != MENU_EXIT);
+            else if (selection != MENU_EXIT)
+                System.out.println("Invalid selection! \n");
+
+        } while (selection != MENU_EXIT && !game.isGameOver());
 
         // display winners...
         // ToDo ~ game.isGameOver(); ? game.getWinners();
-        if(game.isGameOver()){
-            System.out.println( "Game Over!\n" );
-            System.out.println( "Winners: " + game.getWinners() + "\n" );
+        if (game.isGameOver()) {
+            System.out.println("Game Over!\n");
+
+            System.out.println(game.showScoreCard());
+            Player[] winners = game.getWinners();
+            System.out.print("Winner(s): ");
+            for (Player p : winners) {
+                System.out.print(p.getName() + " ");
+            }
+
+        } else {
+            System.out.println("Game quit by user.");
+
         }
-        else{
-            System.out.println( "Game Was Not Over!\n" );
-        } 
-        System.out.println( "ToDo..." );
-        
-        System.out.println( "\nEnd of MyCardGame\n" );   
+
+        System.out.println("\nEnd of MyCardGame\n");
+        System.out.println(game.showScoreCard());
+        Player[] winners = game.getWinners();
+        System.out.print("Winner(s): ");
+        for (Player p : winners) {
+            System.out.print(p.getName() + " ");
+        }
     }
 
     // ToDo...
     // get the card, c, that player p wants to play
     // pass c to the game, see if it accepted c from p
-    // if game didn't accept the card, give c back to the player! 
+    // if game didn't accept the card, give c back to the player!
     // return accepted.
-    private static boolean play( Player p, CardGame game)
-    {
-        Card       c;
-        boolean    accepted;
-        
-        accepted = false;  // ToDo...
+    private static boolean play(Player p, CardGame game) {
+        Card c;
+        boolean accepted;
+
+        accepted = false; // ToDo...
 
         c = p.playCard();
-        if(game.playTurn(p, c)){
+        if (game.playTurn(p, c)) {
             accepted = true;
-        }
-        else{
+        } else {
             p.add(c);
         }
 
         return accepted;
     }
-    
+
 }
- // end class MyCardGame
+// end class MyCardGame
