@@ -77,17 +77,12 @@ public class CardGame {
 
     public int getRoundNo() {
         // ToDo
-        if(getTurnOfPlayerNo() == 0){
-            roundNo++;
-        }
+        
         return roundNo;
     }
 
     public int getTurnOfPlayerNo() {
-        turnOfPlayer++;
-        if(turnOfPlayer == 4){
-            turnOfPlayer = 0;
-        }
+        
         return turnOfPlayer;
     }
 
