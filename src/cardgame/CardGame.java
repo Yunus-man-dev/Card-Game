@@ -88,10 +88,10 @@ public class CardGame {
 
     public Player[] getWinners() {
 
-        int playerOneScore = scoreCard.getScore(0);
-        int playerTwoScore = scoreCard.getScore(1);
-        int playerThreeScore = scoreCard.getScore(2);
-        int playerFourScore = scoreCard.getScore(3);
+        int playerOneScore = scoreCard.getScore(1);
+        int playerTwoScore = scoreCard.getScore(2);
+        int playerThreeScore = scoreCard.getScore(3);
+        int playerFourScore = scoreCard.getScore(4);
 
         int maxScore = playerOneScore;
         if (playerTwoScore > maxScore)
