@@ -42,10 +42,51 @@ public class CardGame {
         if (!isTurnOf(p)) {
             return false; 
         }
+
         int playerIndex = players.indexOf(p); 
         cardsOnTable[playerIndex].addTopCard(c); 
 
-        turnOfPlayer = (turnOfPlayer + 1) % 4;
+        turnOfPlayer = (turnOfPlayer + 1) % 4; 
+
+        
+        boolean allPlayed = true;
+        for (Cards pile : cardsOnTable) {
+            if (pile.getValid() == 0) { 
+                allPlayed = false;
+                break;
+            }
+        }
+
+        
+        if (allPlayed) {
+            
+            int highestValue = -1;
+            int winnerIndex = -1;
+
+            for (int i = 0; i < 4; i++) {
+                Card top = cardsOnTable[i].getTopCard();
+                if (top != null && top.getFaceValue() > highestValue) {
+                    highestValue = top.getFaceValue();
+                    winnerIndex = i;
+                }
+            }
+
+            
+            if (winnerIndex != -1) {
+                scoreCard.update(winnerIndex + 1, 1); 
+                System.out.println(players.get(winnerIndex).getName() + " wins the round and gets 1 point!");
+            }
+
+            
+            roundNo++;
+
+            
+            for (int i = 0; i < 4; i++) {
+                cardsOnTable[i] = new Cards(false);
+            }
+        }
+
+        return true;
     }
 
     public boolean isTurnOf(Player p) {
