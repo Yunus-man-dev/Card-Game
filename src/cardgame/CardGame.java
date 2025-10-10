@@ -49,7 +49,7 @@ public class CardGame {
     }
 
     public boolean isTurnOf(Player p) {
-        // ToDo
+        
         if(p == players.get(getTurnOfPlayerNo())){
             return true;
         }
@@ -124,19 +124,19 @@ public class CardGame {
 
         int index = 0;
         if (playerOneScore == maxScore) {
-            winners[index] = players.get(0);
-            index = index + 1;
-        }
-        if (playerTwoScore == maxScore) {
             winners[index] = players.get(1);
             index = index + 1;
         }
-        if (playerThreeScore == maxScore) {
+        if (playerTwoScore == maxScore) {
             winners[index] = players.get(2);
             index = index + 1;
         }
-        if (playerFourScore == maxScore) {
+        if (playerThreeScore == maxScore) {
             winners[index] = players.get(3);
+            index = index + 1;
+        }
+        if (playerFourScore == maxScore) {
+            winners[index] = players.get(4);
             index = index + 1;
         }
 
