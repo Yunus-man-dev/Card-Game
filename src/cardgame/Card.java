@@ -63,14 +63,14 @@ public class Card
     
     public int compareTo( Card c)
     {
-        // ToDo
+        
         if(this.equals(c)){
 
             return 0;
 
 
         }
-        // bu kard daha buyuk ise
+        
         else if(c.getFaceValue() < this.getFaceValue()){
 
             return +1;

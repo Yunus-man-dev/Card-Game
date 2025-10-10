@@ -39,24 +39,23 @@ public class CardGame {
 
     // methods
     public boolean playTurn(Player p, Card c) {
-        if (!isTurnOf(p) || c == null) { // Gelen kartın null olup olmadığını da kontrol et
+        if (!isTurnOf(p) || c == null) { 
             return false;
         }
 
-        // Parametre olarak gelen 'c' kartını masaya koy
+        
         cardsOnTable[turnOfPlayer].addTopCard(c);
 
         turnOfPlayer = (turnOfPlayer + 1) % 4;
 
-        // Turun sonu geldiyse kazananı belirle
+        
         if (turnOfPlayer == 0) {
             int winnerIndex = -1;
             int highestValue = -1;
 
-            // Masadaki kartları kontrol et
+            
             for (int i = 0; i < 4; i++) {
-                // ÖNEMLİ DÜZELTME: getTopCard() kartı sildiği için
-                // önce kartı bir değişkene alıp sonra değerine bakmalıyız.
+                
                 Card topCard = cardsOnTable[i].getTopCard();
                 if (topCard != null) {
                     int value = topCard.getFaceValue();
@@ -114,7 +113,7 @@ public class CardGame {
     }
 
     public Player[] getWinners() {
-        // FIX: skor indeksleri 0–3 arası olmalı
+
         int playerOneScore = scoreCard.getScore(1);
         int playerTwoScore = scoreCard.getScore(2);
         int playerThreeScore = scoreCard.getScore(3);
@@ -138,19 +137,19 @@ public class CardGame {
         int index = 0;
 
         if (playerOneScore == maxScore) {
-            winners[index] = players.get(1);
+            winners[index] = players.get(0);
             index++;
         }
         if (playerTwoScore == maxScore) {
-            winners[index] = players.get(2);
+            winners[index] = players.get(1);
             index++;
         }
         if (playerThreeScore == maxScore) {
-            winners[index] = players.get(3);
+            winners[index] = players.get(2);
             index++;
         }
         if (playerFourScore == maxScore) {
-            winners[index] = players.get(4);
+            winners[index] = players.get(3);
             index++;
         }
 

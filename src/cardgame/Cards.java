@@ -44,7 +44,7 @@ public class Cards {
 
     public boolean addTopCard(Card c) {
         if (valid < cards.length) {
-            cards[valid] = c; // should this be cloned?
+            cards[valid] = c; 
             valid++;
             return true;
         }
@@ -71,11 +71,6 @@ public class Cards {
         }
     }
 
-    // For testOnly... remove from production version!
-    public void testOnlyPrint() {
-        for (int i = 0; i < valid; i++) {
-            System.out.println(cards[i]);
-        }
-    }
+    
 
 } // end class Cards

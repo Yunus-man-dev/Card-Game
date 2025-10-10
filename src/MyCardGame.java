@@ -4,7 +4,7 @@ import cardgame.*;
 // MyCardGame - provides a menu allowing any of the players to play their card,
 //              an option to see the score card, and one to quit the game at any time.
 //              When the game is over it dislays the winners.
-// author: Yusuf Burak 
+// author: Yusuf Burak Eralp Yiğit Boz
 // date: 2025-10-09
 public class MyCardGame {
     public static void main(String[] args) {
@@ -78,8 +78,7 @@ public class MyCardGame {
 
         } while (selection != MENU_EXIT && !game.isGameOver());
 
-        // display winners...
-        // ToDo ~ game.isGameOver(); ? game.getWinners();
+        
         if (game.isGameOver()) {
             System.out.println("Game Over!\n");
 
@@ -104,11 +103,7 @@ public class MyCardGame {
         }
     }
 
-    // ToDo...
-    // get the card, c, that player p wants to play
-    // pass c to the game, see if it accepted c from p
-    // if game didn't accept the card, give c back to the player!
-    // return accepted.
+    
     private static boolean play(Player p, CardGame game) {
         Card c;
         boolean accepted;
