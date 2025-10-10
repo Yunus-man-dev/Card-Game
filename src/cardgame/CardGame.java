@@ -34,7 +34,7 @@ public class CardGame {
         }
         scoreCard = new ScoreCard(4);
         this.roundNo = 1;
-        this.turnOfPlayer = 1;
+        this.turnOfPlayer = 0;
     }
 
     // methods

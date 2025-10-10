@@ -43,8 +43,9 @@ public class MyCardGame
         {
             // display menu
             System.out.println();
+            int x = game.getTurnOfPlayerNo()+1;
             System.out.println( "MyCardGame   Round: " + game.getRoundNo() 
-                                 + "\t TurnOfPlayer: " + game.getTurnOfPlayerNo() );
+                                 + "\t TurnOfPlayer: " + x );
             System.out.println();
             System.out.println( MENU_PLAY_P1 + " - Player " + MENU_PLAY_P1 + " plays" );
             System.out.println( MENU_PLAY_P2 + " - Player " + MENU_PLAY_P2 + " plays" );
