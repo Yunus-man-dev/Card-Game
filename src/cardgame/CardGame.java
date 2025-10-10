@@ -32,8 +32,8 @@ public class CardGame {
             cardsOnTable [i] = new Cards (false);
         }
         scoreCard = new ScoreCard(4);
-        int roundNo = 0;
-        int turnOfPlayer = -1;
+        this.roundNo = 1;
+        this.turnOfPlayer = 1;
     }
 
     // methods
