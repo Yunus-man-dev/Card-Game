@@ -40,49 +40,32 @@ public class CardGame {
     // methods
     public boolean playTurn(Player p, Card c) {
         if (!isTurnOf(p)) {
-            return false; 
+            return false;
         }
 
-        int playerIndex = players.indexOf(p); 
-        cardsOnTable[playerIndex].addTopCard(c); 
+        cardsOnTable[turnOfPlayer].addTopCard(c); // kart masaya koyuldu
 
-        turnOfPlayer = (turnOfPlayer + 1) % 4; 
+        // p.hand.removeCard(c); → kaldırıldı çünkü getTopCard içinde zaten var
 
-        
-        boolean allPlayed = true;
-        for (Cards pile : cardsOnTable) {
-            if (pile.getValid() == 0) { 
-                allPlayed = false;
-                break;
-            }
-        }
+        turnOfPlayer = (turnOfPlayer + 1) % 4;
 
-        
-        if (allPlayed) {
-            
+        if (turnOfPlayer == 0) {
+            int winnerIndex = 0;
             int highestValue = -1;
-            int winnerIndex = -1;
-
             for (int i = 0; i < 4; i++) {
-                Card top = cardsOnTable[i].getTopCard();
-                if (top != null && top.getFaceValue() > highestValue) {
-                    highestValue = top.getFaceValue();
-                    winnerIndex = i;
+                if (cardsOnTable[i].getValid() > 0) {
+                    int value = cardsOnTable[i].getTopCard().getFaceValue();
+                    if (value > highestValue) {
+                        highestValue = value;
+                        winnerIndex = i;
+                    }
                 }
             }
 
-            
-            if (winnerIndex != -1) {
-                scoreCard.update(winnerIndex + 1, 1); 
-                System.out.println(players.get(winnerIndex).getName() + " wins the round and gets 1 point!");
-            }
-
-            
+            scoreCard.update(winnerIndex, 1); // round kazananına puan ekle
             roundNo++;
-
-            
             for (int i = 0; i < 4; i++) {
-                cardsOnTable[i] = new Cards(false);
+                cardsOnTable[i] = new Cards(false); // temizleme
             }
         }
 
@@ -100,7 +83,6 @@ public class CardGame {
     public boolean isGameOver() {
         for (Player p : players) {
             if (p.hand.getValid() > 0) {
-
                 return false;
             }
         }
@@ -128,52 +110,44 @@ public class CardGame {
     }
 
     public Player[] getWinners() {
+        // FIX: skor indeksleri 0–3 arası olmalı
+        int playerOneScore = scoreCard.getScore(0);
+        int playerTwoScore = scoreCard.getScore(1);
+        int playerThreeScore = scoreCard.getScore(2);
+        int playerFourScore = scoreCard.getScore(3);
 
-        int playerOneScore = scoreCard.getScore(1);
-        int playerTwoScore = scoreCard.getScore(2);
-        int playerThreeScore = scoreCard.getScore(3);
-        int playerFourScore = scoreCard.getScore(4);
-
-        int maxScore = playerOneScore;
-        if (playerTwoScore > maxScore)
-            maxScore = playerTwoScore;
-        if (playerThreeScore > maxScore)
-            maxScore = playerThreeScore;
-        if (playerFourScore > maxScore)
-            maxScore = playerFourScore;
+        int maxScore = Math.max(
+                Math.max(playerOneScore, playerTwoScore),
+                Math.max(playerThreeScore, playerFourScore));
 
         int winnerCount = 0;
-        if (playerOneScore == maxScore) {
+        if (playerOneScore == maxScore)
             winnerCount++;
-        }
-        if (playerTwoScore == maxScore) {
+        if (playerTwoScore == maxScore)
             winnerCount++;
-        }
-        if (playerThreeScore == maxScore) {
+        if (playerThreeScore == maxScore)
             winnerCount++;
-        }
-        if (playerFourScore == maxScore) {
+        if (playerFourScore == maxScore)
             winnerCount++;
-        }
 
         Player[] winners = new Player[winnerCount];
-
         int index = 0;
+
         if (playerOneScore == maxScore) {
-            winners[index] = players.get(1);
-            index = index + 1;
+            winners[index] = players.get(0);
+            index++;
         }
         if (playerTwoScore == maxScore) {
-            winners[index] = players.get(2);
-            index = index + 1;
+            winners[index] = players.get(1);
+            index++;
         }
         if (playerThreeScore == maxScore) {
-            winners[index] = players.get(3);
-            index = index + 1;
+            winners[index] = players.get(2);
+            index++;
         }
         if (playerFourScore == maxScore) {
-            winners[index] = players.get(4);
-            index = index + 1;
+            winners[index] = players.get(3);
+            index++;
         }
 
         return winners;
