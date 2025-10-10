@@ -55,7 +55,7 @@ public class MyCardGame
             
             // ask for and get selection
             System.out.println();
-            System.out.println( "Selection (" + MENU_EXIT + " to exit): ");
+            System.out.print( "Selection (" + MENU_EXIT + " to exit): ");
             selection = scan.nextInt();
             
             // process selection
