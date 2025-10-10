@@ -31,9 +31,7 @@ public class Player
     
     public Card playCard()
     {
-        if( hand.getTopCard() == null){
-            return null;
-        }
+        
         return hand.getTopCard();
     }
     

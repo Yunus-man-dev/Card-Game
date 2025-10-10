@@ -39,22 +39,27 @@ public class CardGame {
 
     // methods
     public boolean playTurn(Player p, Card c) {
-        if (!isTurnOf(p)) {
+        if (!isTurnOf(p) || c == null) { // Gelen kartın null olup olmadığını da kontrol et
             return false;
         }
 
-        cardsOnTable[turnOfPlayer].addTopCard(c); // kart masaya koyuldu
-
-        // p.hand.removeCard(c); → kaldırıldı çünkü getTopCard içinde zaten var
+        // Parametre olarak gelen 'c' kartını masaya koy
+        cardsOnTable[turnOfPlayer].addTopCard(c);
 
         turnOfPlayer = (turnOfPlayer + 1) % 4;
 
+        // Turun sonu geldiyse kazananı belirle
         if (turnOfPlayer == 0) {
-            int winnerIndex = 0;
+            int winnerIndex = -1;
             int highestValue = -1;
+
+            // Masadaki kartları kontrol et
             for (int i = 0; i < 4; i++) {
-                if (cardsOnTable[i].getValid() > 0) {
-                    int value = cardsOnTable[i].getTopCard().getFaceValue();
+                // ÖNEMLİ DÜZELTME: getTopCard() kartı sildiği için
+                // önce kartı bir değişkene alıp sonra değerine bakmalıyız.
+                Card topCard = cardsOnTable[i].getTopCard();
+                if (topCard != null) {
+                    int value = topCard.getFaceValue();
                     if (value > highestValue) {
                         highestValue = value;
                         winnerIndex = i;
@@ -62,13 +67,12 @@ public class CardGame {
                 }
             }
 
-            scoreCard.update(winnerIndex, 1); // round kazananına puan ekle
-            roundNo++;
-            for (int i = 0; i < 4; i++) {
-                cardsOnTable[i] = new Cards(false); // temizleme
+            if (winnerIndex != -1) {
+                scoreCard.update(winnerIndex + 1, 1);
             }
-        }
 
+            roundNo++;
+        }
         return true;
     }
 
