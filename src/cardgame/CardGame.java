@@ -40,10 +40,10 @@ public class CardGame {
     // methods
     public boolean playTurn(Player p, Card c) {
         if (!isTurnOf(p)) {
-            return false; // Sırası değilse hamle geçersiz
+            return false; 
         }
-        int playerIndex = players.indexOf(p); // EKLENDİ: oyuncunun sıra indeksini bul
-        cardsOnTable[playerIndex].addTopCard(c); // Kartı masaya koy
+        int playerIndex = players.indexOf(p); 
+        cardsOnTable[playerIndex].addTopCard(c); 
 
         turnOfPlayer = (turnOfPlayer + 1) % 4;
     }
